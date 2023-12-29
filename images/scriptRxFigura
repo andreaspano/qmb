@@ -1,0 +1,25 @@
+k=.65
+g <- seq(0,1, length=10)
+e <- g^2
+f <- sqrt(g)
+h <- c( rep(1,length(e)), rep(2,length(f)), rep(3,length(g)) )
+
+png(filename = "/home/alice/projects/QUANTIDE/corsi/latex/statistica/images/1_75.png", width = 1000, 
+height = 800,res=300)
+par(fig=c(0,1,0,k),mar=c(1,1,1,1))
+plot(density(g,adjust = 1.5), type="l", col="blue",main="",tcl=0)
+par(new=T)
+plot(density(f,adjust = 1.5), type="l", col="green", main="",tcl=0)
+par(new=T)
+plot(density(e,adjust = 1.5), type="l", col="red",main="",tcl=0)
+par(cex=1.2)
+legend(1.1,0.9,legend=c("asimmetrica a dx","asimmetrica a sx","simmetrica"),col=c("red", "green", "blue"),lwd=2)
+
+par(fig=c(0,1,k,1), new=T)
+boxplot( c(e,f,g) ~ h, horizontal=T,
+        border=c("red", "green", "blue"),
+        xaxt='n',
+        yaxt='n',
+   )
+
+dev.off() 

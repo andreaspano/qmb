@@ -1,0 +1,52 @@
+% Impostazioni principali
+\documentclass[t, compress, mathserif]{beamer}
+
+
+
+%         ----------------------------------------------         %
+%        /                                              \        %
+%--------               START PREAMBLE                   --------%
+%        \                                              /        %
+%         ----------------------------------------------         %
+
+% Titolo che appare nella prima slide del documento
+\newcommand{\titolo}{Decision Tree of statistical tests}
+\newcommand{\sottotitolo}{Choice of the method according to the purpose of the data} 
+
+% Titolo che appare nella barra in basso di ogni slide, al centro
+% Sono due variabili:
+% * una puo' essere utilizzata per l'intero corso. Se impostata nel preambolo sovrascrive quella di seguito.
+% * l'altra puo' identificare ciascun documento
+\newcommand{\titolocompleto}{Statistics course - }
+\newcommand{\titoloshort}{\titolo}
+
+% Numero di capitolo o altro nome che appare in basso di ogni slide, vicino al numero di pagina
+\newcommand{\numerocapitolo}{Appendix 1}
+
+% Include il documento che contiene il preambolo
+\input{../includeTex/preamble.tex}
+
+
+
+%         ----------------------------------------------         %
+%        /                                              \        %
+%--------               START DOCUMENT                   --------%
+%        \                                              /        %
+%         ----------------------------------------------         %
+
+\begin{document}
+
+% Pagina del titolo
+\frame{\titlepage}
+
+% Indice
+% \begin{frame}
+% 	 \tableofcontents
+% \end{frame}
+
+% Documento
+% I soli contenuti del documento sono in un file esterno. Questo semplifica enormemente le cose qualora si volessero creare dei manuali (singoli documenti) a partire da diversi documenti.
+\input{../contenuti/A1_diagrammaTestStatistici_contenuti.tex}
+
+
+\end{document}

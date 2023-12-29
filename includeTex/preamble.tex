@@ -1,0 +1,186 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% VARIABILI DA DEFINIRE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Titolo che appare nella barra in basso di ogni slide, al centro
+% Se impostato ha la precedenza rispetto a quello di ogni singola slide
+
+%\renewcommand{\titolocompleto}{}
+
+% non c'e' newcommand{\sottotitolo} perche' viene definito in ogni slide
+\newcommand{\data}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[latin1]{inputenc}   
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{rotfloat}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{../includeTex/floatflt}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{pgfpages} 
+\usepackage{ifthen}
+\usepackage{wasysym}
+\usepackage{multirow}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% IMPOSTAZIONI GENERALI %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Beamer theme
+%\usetheme{CambridgeUS}      
+\usetheme{Madrid}      
+
+% Immagini da visualizzare
+\newcommand{\materiale}{minitab}
+
+% Path delle immagini
+\graphicspath{{../images/}}
+
+% Per caricare le formule matematiche con il giusto font 
+% Questo sostituisce l'opzione mathserif di documentclass (obsoleta) 
+\usefonttheme[onlymath]{serif}      
+
+     
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{grigio}{rgb}{0.46,0.48,0.48}
+\definecolor{giallo}{rgb}{1,0.84,0}
+\definecolor{coolred}{rgb}{0.83,0.06,0.27}
+\definecolor{arancio}{rgb}{0.97,0.46,0.09}
+\definecolor{verde}{rgb}{0.25,0.78,0.25}
+\definecolor{qblu}{rgb}{0.24,0.27,0.74}
+\definecolor{azzurro}{rgb}{0.37,0.91,0.90}
+
+\definecolor{grigio}{rgb}{0.46,0.48,0.48}
+\definecolor{blu}{rgb}{0.25,0.28,0.78}
+
+\definecolor{sfondoScopo}{rgb}{0.75,0.785,0.83}
+\definecolor{darkred}{named}{qblu}
+\definecolor{blue}{named}{qblu}
+
+\setbeamercolor{scopo}{bg=sfondoScopo}
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=darkred!80!gray}
+\setbeamercolor{palette primary}{fg=darkred!60!black,bg=gray!30!white}
+\setbeamercolor{palette secondary}{fg=darkred!70!black,bg=gray!15!white}
+\setbeamercolor{palette tertiary}{bg=darkred!80!black,fg=gray!10!white}
+\setbeamercolor{palette quaternary}{fg=darkred,bg=gray!5!white}
+
+\setbeamercolor{sidebar}{fg=darkred,bg=gray!15!white}
+\setbeamercolor{palette sidebar primary}{fg=darkred!10!black}
+\setbeamercolor{palette sidebar secondary}{fg=white}
+\setbeamercolor{palette sidebar tertiary}{fg=darkred!50!black}
+\setbeamercolor{palette sidebar quaternary}{fg=gray!10!white}
+
+\setbeamercolor{titlelike}{parent=pallette primary,fg=darkred}
+\setbeamercolor{frametitle}{bg=gray!10!white}
+\setbeamercolor{frametitle right}{bg=gray!60!white}
+
+\setbeamercolor{separation line}{}
+\setbeamercolor{fine separation line}{}
+
+%% Definizione dei colori da assegnare ai box
+\setbeamercolor{postit}{fg=white,bg=qblu}
+\setbeamercolor{postut}{fg=qblu,bg=gray!60!white}
+
+%% Definizione dei colori per i diagrammi
+\definecolor{bloccoIniziale}{rgb}{0.94,0.93,0.48}
+\definecolor{bloccoFinale}{rgb}{0.86,0.25,0.27}
+\definecolor{blocco}{rgb}{0.56,0.58,0.77}
+\definecolor{bloccoSospeso}{rgb}{0.94,0.81,0.36}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% STRUTTURA DELLE DIAPOSITIVE %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Intestazione
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% Pie' di pagina
+\setbeamertemplate{footline}
+{
+  \hbox{%
+    \begin{beamercolorbox}[wd=.20\paperwidth, ht = 2.25ex, dp = 1ex, center]{palette sidebar secondary}%
+      \usebeamerfont{author in head/foot}%\insertshortauthor~~(\insertshortinstitute) 
+      \includegraphics[width=1.5cm]{QUANTIDE.jpg}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.57\paperwidth, ht = 2.25ex, dp = 1ex, center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}{\titolocompleto \titoloshort}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.13\paperwidth, ht = 2.25ex, dp = 1ex, left]{date in head/foot}%
+      \hspace*{0.4em} \usebeamerfont{date in head/foot} {\numerocapitolo}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.10\paperwidth, ht = 2.25ex, dp = 1ex, right]{date in head/foot}%
+       \usebeamerfont{date in head/foot} \insertframenumber{} / \inserttotalframenumber \hspace*{2ex} 
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%% STILE DELLE DIAPOSITIVE %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Simboli di navigazione
+\setbeamertemplate{navigation symbols}{}
+
+% Modifica lo stile dell'elenco (di primo livello)
+\useitemizeitemtemplate{$\star$} % Usa la stella
+
+% Interlinea (fattore di scala; NON e' un valore assoluto)
+\renewcommand{\baselinestretch}{1.2}  
+
+% Definisci stile per vettori e matrici
+\newcommand{\vect}[1]{\boldsymbol{\underline{#1}}} % Grassetto e sottolineato
+\newcommand{\matr}[1]{\boldsymbol{#1}} % Grassetto
+
+% Definire stile per valore assoluto
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+% Cambiare il nome delle figure e delle tabelle
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabella}
+
+% Definizione sezioni, ecc.
+\newcommand{\livelloA}{\section}
+\newcommand{\livelloB}{\subsection}
+\newcommand{\livelloC}{\subsubsection}
+
+% Livello di profondita' del 'content panel' del PDF
+% \hypersetup{bookmarksdepth=4} % il valore di default va bene
+
+% Definizione prima slide
+\title{\textbf{\titolo}}
+\author{\sottotitolo}
+\date{\data}
+
+

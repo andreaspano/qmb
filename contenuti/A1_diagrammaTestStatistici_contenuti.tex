@@ -1,0 +1,154 @@
+\livelloA{Chart 1}
+
+\begin{frame}
+
+\onslide<1>{
+\begin{tiny}
+	\begin{tikzpicture}[level distance=10mm]
+		
+                \tikzstyle{every node}=[fill=blocco!50,rounded corners,text width=1.2cm]
+                \tikzstyle{edge from parent}=[blocco,thick,draw]
+		\tikzstyle{level 1}=[sibling distance=28mm]
+  		\tikzstyle{level 2}=[sibling distance=24mm]
+  		\tikzstyle{level 3}=[sibling distance=42mm]
+  		\tikzstyle{level 4}=[sibling distance=30mm]
+		\tikzstyle{level 5}=[level distance=14mm]
+		\tikzstyle{level 6}=[level distance=10mm]
+                  \node[text width=3.4cm] [fill=blocco]{\textbf{How many variables are analyzed?}}
+			child {node {\textbf{one}}
+				child {node [text width=2.2cm] {Is It quantitative?}
+					child {node [text width=2.2cm]{\textbf{yes}. \\ What do you want to test?}
+						child {node[text width=2.2cm] {\textbf{Mean equal to a value}}
+							child {node {Sigma known}
+								child {node[fill=bloccoFinale!50] {\textbf{Test Z}}}}
+							child {node {Sigma NOT known}
+								child {node [fill=bloccoFinale!50]{\textbf{One sample T test}}}}}
+						child {node [text width=2.2cm]{\textbf{Variance equal to a value}}
+							child {node [fill=bloccoFinale!50]{\textbf{Test for one variance} $\chi^2$}}}}
+					child {node [text width=2.2cm]{\textbf{No}.\\ What do you want to test?}
+						child {node [text width=2.2cm] {\textbf{True percentage equal to a value}}
+							child {node[text width=2.2cm] [fill=bloccoFinale!50]{\textbf{Tests on percentages (tests on one proportion, $\chi^2$ ``observed vs expected''}) }}}}}}
+			child {node{\textbf{two}}child {node[ text width=1.3cm] [fill=bloccoSospeso!50]{See chart 2}}}
+			child {node{ $>$\textbf{two}}child {node[ text width=1.3cm] [fill=bloccoSospeso!50]{See chart 4}}};
+
+         \end{tikzpicture}
+\end{tiny}
+}
+
+\end{frame}
+
+\livelloA{Chart 2}
+\begin{frame}
+
+\onslide<1>{
+\begin{tiny}
+	\begin{tikzpicture}[level distance=10mm]
+                \tikzstyle{every node}=[fill=blocco!50,rounded corners,text width=1.2cm]
+                \tikzstyle{edge from parent}=[blocco,thick,draw]
+		\tikzstyle{level 1}=[sibling distance=28mm]
+  		\tikzstyle{level 3}=[sibling distance=50mm]
+  		\tikzstyle{level 4}=[sibling distance=18mm]
+  		\tikzstyle{level 5}=[level distance=15mm]
+                  \node [ text width=3.4cm] [fill=blocco]{\textbf{How many variables are analyzed?}}
+			child {node{\textbf{one}}child {node [ text width=1.3cm][fill=bloccoSospeso!50]{See chart 1}}}
+			child {node {\textbf{two}}
+				child {node  {What kind of data is used?}
+					child {node {\textbf{both \\ qualitative}}
+						child {node [ text width=2cm]{What is It to be tested?}
+							child {node {\textbf{Agreement}}
+								child {node[fill=bloccoFinale!50] {\textbf{K of Cohen} (or others)}}}
+							child {node {\textbf{Association Addiction}}
+								child {node [fill=bloccoFinale!50]{\textbf{$\chi^2$} Test\\(or similar)}}}}}
+					child {node {\textbf{both \\ quantitative}}
+						child {node [ text width=2cm]{What is It to be tested?}
+							child {node {\textbf{Comparison of means (no repeated measures)}}
+								child {node [fill=bloccoFinale!50]{\textbf{Two-samples t Test}}}}
+							child {node {\textbf{Comparison of means \\(repeated measures)}}
+								child {node [fill=bloccoFinale!50]{\textbf{Paired t Test}}}}
+							child {node {\textbf{Association}}
+								child {node [fill=bloccoFinale!50]{\textbf{Pearson or Spearman Correlation}}}}
+							child {node {\textbf{Dependence}}
+								child {node [fill=bloccoFinale!50]{\textbf{Simple \\ Regression or linear models}}}}}}
+					child {node {\textbf{one \\ qualitative \\ and one quantitative}}child {node [ text width=1.3cm] [fill=bloccoSospeso!50]{See chart 3}}}}}
+			child {node{$>$\textbf{two}}child {node[ text width=1.3cm] [fill=bloccoSospeso!50]{See chert 4}}};
+         \end{tikzpicture}
+\end{tiny}
+}
+
+\end{frame}
+
+
+\livelloA{Chart 3}
+\begin{frame}
+
+\onslide<1>{
+\begin{tiny}
+	\begin{tikzpicture}[level distance=10mm]
+                \tikzstyle{every node}=[fill=blocco!50,rounded corners,text width=1.2cm]
+                \tikzstyle{edge from parent}=[blocco,thick,draw]
+		\tikzstyle{level 1}=[sibling distance=40mm]
+  		\tikzstyle{level 2}=[sibling distance=30mm]
+  		\tikzstyle{level 3}=[sibling distance=60mm]
+  		\tikzstyle{level 5}=[sibling distance=20mm]
+  		\tikzstyle{level 6}=[sibling distance=70mm]
+		\tikzstyle{level 6}=[level distance=10mm]
+  		\tikzstyle{level 7}=[level distance=15mm]
+                  \node[ text width=4.8cm][fill=bloccoSospeso!50] {\textbf{2 variables: one qualitative and one quantitative}}
+			child {node [ text width=4.5cm] {Does a \textbf{dependent} variable exist?}
+			child {node {\textbf{no}}
+				child {node [fill=bloccoFinale!50]{\textbf{Association indexes}}}}
+			child {node [ text width=2cm] {\textbf{yes}, the quantitative is the dependent}
+				child {node [ text width=3cm]{What do you want to check?}
+					child {node[ text width=3cm] {\textbf{Difference in variance of the dependent v. varying the values of the qualitative v.}}
+						child {node [ text width=3cm] {Number of values assumed by qualitative variable}
+						child {node {\textbf{2}}
+							child {node[fill=bloccoFinale!50] {\textbf{Test F or Levene Test}}}}
+						child {node {$>$\textbf{2}}
+							child {node[fill=bloccoFinale!50] {\textbf{Bartlett o Levene Test}}}}
+						child {node {\textbf{virtually unlimited}}
+							child {node [fill=bloccoFinale!50]{\textbf{Breush-Pagan Test and others}}}}}}
+					child {node [ text width=3cm] {\textbf{Difference in mean of the dependent v. varying the values of the qualitative v.}}
+						child {node [ text width=3cm] {Number of values assumed by qualitative variable}
+						child {node {\textbf{2}}
+							child {node [ text width=2cm][fill=bloccoFinale!50]{\textbf{Student's t test for independent groups or one-way ANOVA with fixed effects for indipendent groups}}}}
+						child {node {$>$\textbf{2}}
+							child {node[fill=bloccoFinale!50] {\textbf{one-way ANOVA with fixed effects for indipendent groups}}}}
+						child {node {\textbf{virtually unlimited}}
+							child {node[fill=bloccoFinale!50][ text width=2cm] {\textbf{Regression, one-way ANOVA with Random effects for indipendent groups} }}}}
+				}}}
+			child {node [ text width=2cm]{\textbf{yes}, the qualitative is the dipendent}
+				child {node[fill=bloccoFinale!50] [ text width=2cm] {\textbf{Logit, Probit \\ Analysis (Generalized linear models)}}}}};
+         \end{tikzpicture}
+\end{tiny}
+}
+\end{frame}
+
+\livelloA{Chart 4}
+\begin{frame}
+\onslide<1>{
+\begin{tiny}
+	\begin{tikzpicture}[level distance=10mm]
+                \tikzstyle{every node}=[fill=blocco!50,rounded corners,text width=1.2cm]
+                \tikzstyle{edge from parent}=[blocco,thick,draw]
+		\tikzstyle{level 2}=[sibling distance=70mm]
+  		\tikzstyle{level 3}=[sibling distance=40mm]
+  		\tikzstyle{level 4}=[level distance=15mm]
+  		%\tikzstyle{level 3}=[sibling distance=60mm]
+                  \node[ text width=6cm][fill=bloccoSospeso!50] {\textbf{$>$2 variables.} \\ It is hypothesized that one of the variables may depend from the other}
+			child {node [ text width=4.5cm]{What type of data has the dependent variable?}
+				child {node [ text width=2.5cm]{\textbf{Qualitative o discrete quantitative}}
+					child {node [ text width=2.5cm] {What do you want to check?}
+						child {node [ text width=2.5cm]{\textbf{Dependence of the mean of the dependent variable from other variables}}
+							child {node [ text width=2.5cm] [fill=bloccoFinale!50]{\textbf{Generalized linear models or, in specific cases, multiple regression and generalized linear models}}}}}}
+				child {node {\textbf{Continuous}}
+					child {node [ text width=2.5cm]{What do you want to check?}
+						child {node [ text width=2.5cm]{\textbf{Dependence of the variance of the dependent variable from other variables}}
+							child {node [ text width=2.5cm][fill=bloccoFinale!50]{\textbf{Breush-Pagan Test or others}}}}
+						child {node [ text width=2.5cm]{\textbf{Dependence of the mean of the dependent variable from other variables}}
+							child {node [ text width=2.5cm][fill=bloccoFinale!50] {\textbf{Multiple regression,\\  general linear models, generalized linear models}}}}}}};
+		\end{tikzpicture}
+\end{tiny}
+}
+\end{frame}
+
+

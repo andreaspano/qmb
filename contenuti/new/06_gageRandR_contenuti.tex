@@ -1,0 +1,149 @@
+\livelloA{Definitions}
+
+\begin{frame}
+\begin{small}
+\vspace*{.25cm}
+\begin{itemize}
+ \item \textbf{REPEATABILITY}: the ability of the measurement system of containing the variability obtained when the same measurement is repeated many times on the same sample with the same conditions. 
+ \item  \textbf{REPRODUCIBILITY}: the ability of the measurement system of containing the intrinsic variability of the measurement instrument when the conditions of the same measurement vary (alternation of operators, different environmental conditions as regards the temperature and the humidity, switching on of the bench, $\dots$).
+ \item \textbf{ACCURACY}: the ability of the measurement system of containing the difference between the value of the observed mean and the reference sample (where it exists) for which the ``real value'' is known.
+\end{itemize}
+\vspace*{.3cm}
+\textit{For a measurement system it is possible to define two fundamental aspects: the {\boldmath$precision$} (repeatability and reproducibility) and the {\boldmath$accuracy$}.}                          \end{small}
+\end{frame}
+
+
+
+\livelloA{Procedure to conclude a Gage R\&R}
+
+\begin{frame}
+\vspace*{.75cm}
+\begin{itemize}
+ \item The choice of the number and of the type of the samples that have to be used (they have to be selected in a way that they can cover all the operative range and the consequent variability inside it).
+ \item Measurement conditions (it is generally the alternation of operators).
+ \item The number of measurements repeted in different times, after having set the previous points (from 2 to 5 repetitions).
+ \item Randomization of the measurements when the previous points vary, in order to minimize the possible presence of systematic errors.
+\end{itemize}
+\end{frame}
+
+
+
+\livelloA{Analysis of the results}
+
+\begin{frame}
+\vspace*{1cm}
+\begin{itemize}
+ \item Average\&Range (A\&R): it is used with a numer of repetitions equal to 2 or 3. This method uses the range in order to estimate the repeatability and the reproducibility of the measurement system.
+\vspace*{.6cm}
+ \item Average\&Variance (A\&V) or ANOVA: it is a more flexible measurement method than the previous one, because it can be used with any number of samples, operators and repetitions.
+\end{itemize}
+\end{frame}
+
+
+
+\livelloA[Analysis of repeatability and reproducibility of the measurement instruments GAGE R\&R]{Analysis of repeatability and reproducibility}
+
+\begin{frame}
+\vspace*{.25cm}
+The following equation holds:
+$$\sigma^{2}_{total}=\sigma^{2}_{product}$$\\
+\vspace*{.3cm}
+The whole variance that we observed is composed by a first component which is associated to the intrinsic variability of the product (or process) and by a second component associated to the measurement error or ``GAGE variability''.\\
+\vspace*{.25cm}
+\textbf{The goals are:}
+\begin{itemize}
+ \item[$\circ$] to determine the maximum variability of a measurement system splitting the part due to the process to that due to the measurement system;
+ \item[$\circ$] To evaluate the need to improve this system and/or instrument (even based on the ratio precision or tolerance).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\vspace*{.25cm}
+\textbf{When:}
+\begin{itemize}
+ \item there is the start-up of a bench / measurement instrument ;
+ \item to qualify a new operator;
+ \item before using a calibration control chart. It is necessary to ``photograph'' the situation, that will be monitored as the time goes by;
+ \item after the instruments calibration;
+ \item in every situation where it is suspected that the measurement system is not enough precise compared to the tolerances.
+\end{itemize}
+\end{frame}
+
+\livelloB{Anova method}
+
+\begin{frame}
+This is the most recent and efficient method to calculate the variability quotas due to repeatability and reproducibility. The quantities calculated in this way can be used to calculate the previously shown indicators.\\
+The beginning is always the ``fundamental'' identity, to which:
+$$\sigma^{2}_{total}=\sigma^{2}_{product}+\sigma^{2}_{gage}$$
+where
+$$\sigma^{2}_{gage}=\sigma^{2}_{reproducibility}+\sigma^{2}_{repeatability}$$
+and therefore
+$$\sigma^{2}_{total}=\sigma^{2}_{product}+\sigma^{2}_{reproducibility}+\sigma^{2}_{repeatability}$$
+\textit{Note}: $\sigma^{2}_{reproducibility}$ represents the variability due to the variation of the experimental conditions, or rather when the operators and their interaction with the measured parts vary. 
+\end{frame}
+
+\begin{frame}
+\begin{small}\vspace*{.25cm}
+It is supposed that one did a two-way ANOVA with the data of a R\&R study. The factors are Operator (of \textit{a} levels) and Part (of \textit{b} levels). The number of measurements is \textit{n}.\\
+One will obtain an ANOVA table structured like follows:\\
+\begin{center}
+\begin{tabular}{|l|c|c|l|l|}
+\hline
+\multicolumn{1}{|c|}{Source of} & Sum  & Degrees of  & \multicolumn{1}{|c|}{Mean of the} & \multicolumn{1}{|c|}{F Statistics} \\
+\multicolumn{1}{|c|}{Variability} & of the Squares & Freedom & \multicolumn{1}{|c|}{ Squares} & \multicolumn{1}{|c|}{} \\
+\hline
+Operator & $SS_A$ & a-1 & $MS_{A}=\frac{SS_A}{a-1}$ & $F=\frac{MS_A}{MS_E}$\\
+\hline
+Part & $SS_B$ & b-1 & $MS_B=\frac{SS_B}{b-1}$ & $F=\frac{MS_B}{MS_E}$\\
+\hline
+Interaction & $SS_{AB}$ & (a-1)(b-1) & $MS_{AB}=\frac{SS_{AB}}{(a-1)(b-1)}$ & $F=\frac{MS_{AB}}{MS_{E}}$\\
+(Op x Part) &  &  &  & \\
+\hline
+Error & $SS_{E}$ & ab(n-1) & $MS_{E}=\frac{SS_{E}}{(ab(n-1))}$ & \\
+\hline
+Total & $SS_{T}$ & n-1 &  & \\
+\hline
+\end{tabular}\\
+\end{center}            \end{small}
+\end{frame}
+
+\begin{frame}
+\begin{small}At the beginning, the easiest and immediate quantity to estimate is the variance due to the repeatability, or rather the variance of the process, when all the other factors stay constant (operator and measured part). This will be equal to $MS_{E}$. And therefore:
+$$\hat{\sigma}^{2}_{repeatability}=MS_E$$
+Moreover, it is possible to demonstrate that good estimations for $\sigma^2_{Part}(=\sigma^2_{Product})$, $\sigma^2_{Operator}$ and $\sigma^2_{Operator\times Part}$ are:
+$$\sigma^2_{Part}=\frac{MS_B-MS_{AB}}{a\cdot n_{rep}}$$
+$$\sigma^2_{Operator}=\frac{MS_B-MS_{AB}}{b\cdot n_{rep}}$$
+$$\sigma^2_{Operator \times Part}=\frac{MS_{AB}-MS_{E}}{n_{rep}}$$
+Where $n_{rep}$ is the number of replications, within each part, operator.                                                                               \end{small}
+\end{frame}
+
+\begin{frame}
+\vspace*{.25cm}
+As consequence, the variance quota due to the reproducibility will be given by the sum of the the variance estimation due to the operators and to the interaction among operators and parts:
+$$\hat{\sigma}^{2}_{reproducibility}=\hat{\sigma}^{2}_{Operator}+\hat{\sigma}^{2}_{Operator \times Part}$$
+Notes:\\
+\begin{itemize}
+ \item The ANOVA method, unlike the Range method, allows to evaluate also the variability component due to the interaction among operators and the parts. For example, it is possible to identify if certain operators overestimate the small quantities and underestimate the great ones while others do not do that. In other words, the different operators measure the same parts in a different way.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\vspace*{.25cm}
+\begin{itemize}
+ \item If the interaction term is non significant (or if $\hat{\sigma}^{2}_{Operator \times Part}\leq 0$) then $\hat{\sigma}^{2}_{reproducibility}=\hat{\sigma}^{2}_{Operator}$.\\
+ In this last case the estimation of ${\sigma}^{2}_{Operator}$ will become:
+ $$\sigma^2_{Operator}=\frac{MS_A-MS_{E_{pool}}}{b\cdot n_{rep}}$$
+
+ where $MS_{E_{pool}} = MS_{E}$ calculated setting the interaction effect equal to 0. 
+ \item In the case of the example, it is possible to noticed how the variability component due to the operators is non significant. On the contrary the variability component due to the interaction among operators and parts is significant. This implies that ${\sigma}^{2}_{reproducibility}$ is greater than 0.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\vspace*{.25cm}
+Another parameter for the evaluation of the measurement system is the \textit{Number of distinct categories}:
+$$NoDC=\frac{\hat{\sigma}_{parts}}{\hat{\sigma}_{repeatability}}\cdot \sqrt{2}$$
+This number represents the number of confidence intervals non superimposed that will cover the variability interval of a product. It is possible to consider this like a number of groups within the process data that the measurement system is able to distinguish.\\
+The Automobile Industry Action Group (AIAG) suggests that, when the number of categories is lesser than 2, the measurement system is not able to verify the process. When the number of categories is equal to 2, the data can be divided into two groups, ``high'' and ``low'', etc $\dots$ A value equal or greater than 5 denotes an acceptable measurement system.
+\end{frame}

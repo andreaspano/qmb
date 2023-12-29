@@ -1,0 +1,1634 @@
+\livelloA{Regressione semplice}
+
+\livelloB{Impurit\`a nelle vernici}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]paint.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Stirrate}: tasso di agitazione (rotazione) applicato al recipiente stesso (rpm, revolutions per minute);
+          \item \textit{Impurity}: numero di impurit\`a (grumi) presenti nei recipienti di vernice.
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Il numero di impurit\`a (grumi) presenti nei recipienti di vernice dipende dal tasso di agitazione applicato al recipiente stesso. Si vuole determinare la relazione che lega il tasso di agitazione (rotazione) e numero di grumi. 
+        \begin{itemize}
+          \item[-] Si calcolino le principali statistiche descrittive per la variabile \textit{Impurity}.
+          \item[-] Si calcoli la correlazione tra \textit{Impurity} e \textit{Stirrate}.
+          \item[-] Si rappresenti graficamente la relazione tra queste due variabili.
+          \item[-] Si calcoli una regressione lineare semplice tra \textit{Stirrate} e \textit{Impurity}.
+          \item[-] \textit{Stirrate} influenza \textit{Impurity}? Come?
+          \item[-] Quanta variabilit\`a \`e spiegata dalla regressione? Qual \`e la variabilit\`a residua?  
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Calcolo delle statistiche descrittive e grafico B-W per \textit{Impurity}:\\
+  \vspace{.3cm}
+  \begin{scriptsize}
+    \begin{center}
+      \begin{tabular}{|c|cccccc|c|}
+        \hline
+        \textbf{n} & \textbf{Min.} & \textbf{1st. Qu.} & \textbf{Median} & \textbf{Mean} & \textbf{3rd. Qu.} & \textbf{Max.} & \textbf{Sd}\\
+        \hline
+        12 & 8.40 & 11.45 & 14.00 & 13.87 & 16.42 & 18.90 & 3.4076\\
+        \hline	
+      \end{tabular}
+    \end{center}
+    \vspace{0.3cm}
+    \begin{center}
+      \includegraphics[width=6cm]{99_06_bwImpurity}
+    \end{center}
+  \end{scriptsize}
+\end{frame}
+
+\begin{frame}
+  Matrice di scatterplot della relazione tra misure con correlazione e significativit\`a: \\
+  \begin{center}
+    \includegraphics[width=5.5cm]{99_06_splmatImpurity}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Scatterplot della relazione con retta di regressione:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrStirrateImpurity}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+               Estimate  Std. Error  t value   p value    
+(Intercept)    -0.28928     1.22079   -0.237     0.817
+Stirrate        0.45664     0.03844   11.880  3.21e-07
+
+Residual standard error: 0.9193 on 10 degrees of freedom
+Multiple R-squared: 0.9338,	Adjusted R-squared: 0.9272 
+F-statistic: 141.1 on 1 and 10 DF,  p-value: 3.211e-07
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.4329, p-value = 0.2515
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residStirrateImpurity}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{small}
+    \begin{itemize}
+      \item La relazione che ``lega'' il tasso di rotazione con il numero di impurit\`a appare ben descritta da una regressione lineare semplice, almeno nell'intervallo di \textit{Stirrate} considerato.
+      \item La formula stimata \`e la seguente: $ Impurity = -0.2893 + 0.4566 \cdot Stirrate $.
+      \item Il p-value per la significativit\`a del coefficiente associato a \textit{Stirrate} \`e estremamente basso, confermando cos\`i la ``non casuale'' relazione esistente tra le due variabili.
+      \item Il valore di $ R^2 $ \`e pari a 0.9338; ci\`o conferma che il modello descrive molto bene i dati osservati.
+      \item I residui hanno una deviazione standard pari a 0.9193.
+      \item Il p-value associato alla stima dell'intercetta \`e 0.817. Ci\`o farebbe pensare ad un'intercetta potenzialmente pari a 0. 
+      \item Tenendo il valore dell'intercetta pari alla stima, per un valore di \textit{Stirrate}=0 si avrebbe un numero medio di impurit\`a negativo: non si possono ``estendere'' i risultati della regressione troppo al di fuori del campo sperimentale.
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+\livelloB{Resistenza di un film in polipropilene}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]temperatures.txt \\ 
+    %\item[Origine dati: ]http://www.weibull.com/DOEWeb/simple_linear_regression_analysis.htm\\
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Yield}: resistenza di un film in polipropilene;
+          \item \textit{Temperature}: temperatura di un processo chimico.
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        La resistenza di un film in polipropilene dipende dalla temperatura a cui il processo chimico viene eseguito. Si vuole determinare la relazione che lega la resistenza e la temperatura
+        \begin{itemize}
+          \item[-] Si rappresenti graficamente la relazione tra le due variabili.
+          \item[-] Si calcoli una regressione lineare semplice tra \textit{Yield} e \textit{Temperature}.
+          \item[-] \textit{Yield} influenza \textit{Temperature}? Come?
+          \item[-] Quanta variabilit\`a \`e spiegata dalla regressione? Qual \`e la variabilit\`a residua?  
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+%   \begin{small}
+    \begin{itemize}
+      \item La relazione che ``lega'' il tasso di rotazione con il numero di impurit\`a appare ben descritta da una regressione lineare semplice, almeno nell'intervallo di \textit{Stirrate} considerato.
+      \item La formula stimata \`e la seguente: $ Yield = 17.00 + 2.00 \cdot Temperature $.
+      \item Il p-value per la significativit\`a del coefficiente associato a \textit{Stirrate} \`e estremamente basso, confermando cos\`i la ``non casuale'' relazione esistente tra le due variabili.
+      \item Il valore di $ R^2 $ \`e pari a 0.9831; ci\`o conferma che il modello descrive molto bene i dati osservati.
+    \end{itemize}
+%   \end{small}
+\end{frame}
+
+
+\livelloA{Regressione polinomiale}
+
+\livelloB{Interruttore a pressione}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]switch.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+	  \item \textit{BuildOrder}: ordine con il quale gli interruttori sono stati assemblati;
+          \item \textit{RunOrder}: ordine con il quale sono state raccolte le osservazioni;
+          \item \textit{DThickness}: spessore del diaframma (mm);
+          \item \textit{SetPoint}: pressione alla quale l'interruttore si apre (KPa).
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Un interruttore a pressione ha una membrana il cui spessore (in mm) influenza la pressione necessaria per far scattare l'interruttore stesso. Si vuole determinare lo spessore della membrana per cui l'interruttore ``scatta'' con una pressione pari a $165 \pm 15$ KPa. Si sono analizzati 25 interruttori con spessori variabili della membrana.
+        \begin{itemize}
+          \item[-] Si calcolino le statistiche descrittive per la variabile \textit{SetPoint}.
+          \item[-] Si rappresenti graficamente la relazione tra \textit{DThickness} e \textit{SetPoint}.
+          \item[-] Si calcoli una regressione lineare semplice tra queste due.
+          \item[-] \textit{DThickness} influenza \textit{SetPoint}? E il modello \`e corretto?
+          %\item[-] Si determini lo spessore della membrana per cui l'interruttore ``scatta'' con una pressione pari a $165 \pm 15$ KPa.
+          \item[-] Come potrebbe essere modificato il modello? Quali sono le caratteristiche finali?
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Calcolo delle statistiche descrittive e grafico B-W per \textit{SetPoint}:\\
+  \vspace{.3cm}
+  \begin{scriptsize}
+    \begin{center}
+      \begin{tabular}{|c|cccccc|c|}
+        \hline
+        \textbf{n} & \textbf{Min.} & \textbf{1st. Qu.} & \textbf{Median} & \textbf{Mean} & \textbf{3rd. Qu.} & \textbf{Max.} & \textbf{Sd}\\
+        \hline
+        25 & 144.7 & 157.4 & 174.8 & 181.1 & 200.0 & 231.7 & 27.70 \\
+        \hline	
+      \end{tabular}
+    \end{center}
+    \vspace{0.3cm}
+    \begin{center}
+      \includegraphics[width=6cm]{99_06_bwSetPoint}
+    \end{center}
+  \end{scriptsize}
+\end{frame}
+
+\begin{frame}
+  Scatterplot della relazione con retta di regressione:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrDThicknessSetPoint}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+               Estimate Std. Error t value  p value    
+(Intercept)      51.145      7.266   7.039 3.58e-07
+DThickness      185.637     10.174  18.246 3.54e-15
+
+Residual standard error: 7.194 on 23 degrees of freedom
+Multiple R-squared: 0.9354,	Adjusted R-squared: 0.9326 
+F-statistic: 332.9 on 1 and 23 DF,  p-value: 3.542e-15
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.1865, p-value = 0.8949
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Retta di regressione con intervalli di confidenza e di previsione al 95\%:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=6.5cm]{99_06_regrIntDThicknessSetPoint}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residDThicknessSetPoint}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{small}
+    \begin{itemize}
+      \item La relazione che ``lega'' lo spessore del diaframma con la pressione alla quale l'interruttore si apre appare ben descritta da una regressione lineare semplice, almeno nell'intervallo considerato.
+      \item La formula stimata \`e la seguente: $ SetPoint = 51.145 + 185.637 \cdot DThickness $.
+      \item Il p-value per la significativit\`a del coefficiente associato a \textit{DThickness} \`e estremamente basso, confermando cos\`i la ``non casuale'' relazione esistente tra le due variabili.
+      \item Il valore di $ R^2 $ \`e pari a 0.9354; ci\`o conferma che il modello descrive molto bene i dati osservati.
+      \item Il p-value associato alla stima dell'intercetta \`e molto basso. L'intercetta risulta quindi essere significativa.
+      \item Il grafico dei valori residui rispetto ai valori stimati mostra un andamento curvilineo. Questo suggerisce che il modello \`e migliorabile, ad esempio con un modello quadratico.
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Scatterplot della relazione con curva di regressione polinomiale:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=6.5cm]{99_06_regrPolDThicknessSetPoint}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione polinomiale:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value
+(Intercept)     202.47      26.24   7.717 1.07e-07
+DThickness     -265.10      77.19  -3.434  0.00237
+DThickness^2    321.96      54.94   5.860 6.76e-06
+
+Residual standard error: 4.597 on 22 degrees of freedom
+Multiple R-squared: 0.9748,	Adjusted R-squared: 0.9725 
+F-statistic: 424.9 on 2 and 22 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.4204, p-value = 0.3005
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Curva di regressione polinomiale con intervallo di confidenza e di previsione al 95\%:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=6.5cm]{99_06_regrPolIntDThicknessSetPoint}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{small}
+    \begin{itemize}
+      \item Il p-value del termine quadratico \`e significativo, quindi il termine quadratico spiega una significativa quantit\`a di variazione nella risposta rispetto a quella del modello lineare.
+      \item La formula stimata \`e la seguente: $ SetPoint = 202.47 - 265.10 \cdot DThickness + 321.96 \cdot DThickness^2 $.
+      \item Il valore di $ R^2 $ \`e pari a 0.9748, ed \`e sicuramente migliore di quello del modello lineare semplice. 
+      \item $ R^2 $ non pu\`o mai diminuire e sar\`a sempre pi\`u alto quanti pi\`u predittori verranno aggiunti, anche se questi non migliorano il modello.
+      \item Il valore di $ R^2 $ aggiustato permette di confrontare modelli con un numero diverso di parametri.
+      \item Il valore di $ R^2 $ aggiustato per il modello polinomiale (0.9725) \`e maggiore di quello del modello lineare semplice (0.9326).
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione polinomiale:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residPolDThicknessSetPoint}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.75cm}
+  \begin{itemize}
+    \item Il grafico dei valori stimati verso i residui non mostra alcun andamento sistematico dei residui e la varianza sembra la stessa in ciascun valore stimato.
+    \vspace{0.5cm}
+    \item I residui sono abbastanza bene allineati sulla retta che rappresenta i quantili della distribuzione normale: \`e ragionevole supporre che siano quindi distribuiti normalmente.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{floatingfigure}[l]{7cm}
+    \vspace{-1cm}
+    \centering
+    \includegraphics[width=7.5cm]{99_06_regrPol165DThicknessSetPoint}\\
+  \end{floatingfigure}
+  \begin{footnotesize}
+    \vspace{1cm}
+    Utilizzando il modello di regressione quadratica, la scelta migliore per lo spessore del diaframma \`e appossimativamente 0.64 mm. Si pu\`o ottenere questo risultato sostituendo 165 per \textit{SetPoint} (la y) nel modello di regressione e risolvendo lo spessore (\textit{DThickness}, la x) usando l'equazione quadratica.
+  \end{footnotesize}
+\end{frame}
+
+\livelloB{Schermi antierosione}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]erosion.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+	  \item \textit{Hardness}: durezza della turbina;
+          \item \textit{Abrasion}: abrasione.
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Un costruttore di turbine vuole sapere quanto uno schermo antierosione sia in grado di resistere all'azione abrasiva durante l'uso. La diretta misurazione dell'abrasione \`e difficile, costosa e distruttiva. Il costruttore spera comunque di essere in grado di predirre una resistenza all'abrasione usando la durezza dell'acciaio. La perdita dovuta all'abrasione e la durezza sono stati misurati su 24 schermi antierosione, scelti casualmente.
+        \begin{itemize}
+          \item[-] Si rappresenti graficamente la relazione tra le variabili.
+          \item[-] Si calcoli una regressione lineare semplice tra le variabili.
+          \item[-] Si provi ad introdurre nel modello i termini di secondo e terzo grado.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Scatterplot:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_scattHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Retta di regressione:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrIntHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value   
+(Intercept) 2671.0980   279.0055   9.574 2.65e-09
+x             -3.1292     0.3991  -7.841 8.22e-08
+
+Residual standard error: 42.85 on 22 degrees of freedom
+Multiple R-squared: 0.7365,	Adjusted R-squared: 0.7245 
+F-statistic: 61.49 on 1 and 22 DF,  p-value: 8.22e-08 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.1559, p-value = 0.9471
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Curva di regressione quadratica:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrQuadIntHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value
+(Intercept) -5.095e+03  1.055e+04  -0.483    0.634
+x            1.927e+01  3.041e+01   0.634    0.533
+x^2         -1.613e-02  2.190e-02  -0.737    0.470
+
+Residual standard error: 43.3 on 21 degrees of freedom
+Multiple R-squared: 0.7431,	Adjusted R-squared: 0.7187 
+F-statistic: 30.37 on 2 and 21 DF,  p-value: 6.342e-07 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.2841, p-value = 0.6
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residQuadHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Curva di regressione cubica:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrCubIntHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value
+(Intercept) -1.955e+05  3.938e+05  -0.496    0.625
+x            8.416e+02  1.701e+03   0.495    0.626
+x^2         -1.200e+00  2.448e+00  -0.490    0.629
+x^3          5.675e-04  1.174e-03   0.484    0.634
+
+Residual standard error: 44.12 on 20 degrees of freedom
+Multiple R-squared: 0.7461,	Adjusted R-squared: 0.708 
+F-statistic: 19.59 on 3 and 20 DF,  p-value: 3.615e-06 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.3706, p-value = 0.3958
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residCubHardnessAbrasion}
+  \end{center}
+\end{frame}
+
+\livelloB{Emissioni degli autocarri diesel}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]diesel.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{NOx}: emissioni di ossido di azoto;
+          \item \textit{Humidity}: percentuale di umidit\`a.
+        \end{itemize}
+      \end{footnotesize}
+      \begin{tiny}
+        I dati sono tratti da uno studio sull'influenza delle condizioni atmosferiche sulle emissioni inquinanti.	
+      \end{tiny}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si investighi sugli effetti dell'umidit\`a sulle emissioni degli autocarri diesel.
+        \begin{itemize}
+          \item[-] Si rappresenti graficamente la relazione tra le variabili.
+          \item[-] Si calcoli una regressione lineare semplice tra le variabili.
+          \item[-] Si provi ad introdurre nel modello i termini di secondo e terzo grado.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Scatterplot:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_scattHumidityNOx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Retta di regressione:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrIntHumidityNOx}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value   
+(Intercept)  0.9420426  0.0581198  16.209  3.5e-12
+x           -0.0011124  0.0005951  -1.869    0.078
+
+Residual standard error: 0.07074 on 18 degrees of freedom
+Multiple R-squared: 0.1626,	Adjusted R-squared: 0.116 
+F-statistic: 3.494 on 1 and 18 DF,  p-value: 0.07794 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.264, p-value = 0.6596
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residHumidityNOx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Curva di regressione quadratica:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrQuadIntHumidityNOx}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value   
+(Intercept) 1.360e+00  9.729e-02  13.980 9.42e-11
+x          -1.149e-02  2.244e-03  -5.119 8.55e-05
+x^2         5.841e-05  1.243e-05   4.700 0.000206
+
+Residual standard error: 0.048 on 17 degrees of freedom
+Multiple R-squared: 0.6358,	Adjusted R-squared: 0.593 
+F-statistic: 14.84 on 2 and 17 DF,  p-value: 0.0001867 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.1576, p-value = 0.9425
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residQuadHumidityNOx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Curva di regressione cubica:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrCubIntHumidityNOx}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value   
+(Intercept) 1.196e+00  2.442e-01   4.899 0.000161
+x          -4.565e-03  9.716e-03  -0.470 0.644807    
+x^2        -2.841e-05  1.191e-04  -0.239 0.814492    
+x^3         3.339e-07  4.554e-07   0.733 0.474107
+
+Residual standard error: 0.04867 on 16 degrees of freedom
+Multiple R-squared: 0.6477,	Adjusted R-squared: 0.5816 
+F-statistic: 9.804 on 3 and 16 DF,  p-value: 0.000657
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.3708, p-value = 0.3892
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residCubHumidityNOx}
+  \end{center}
+\end{frame}
+
+
+
+\livelloA{Regressione multipla}
+
+\livelloB{Battito in testa del motore}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]knock.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Spark}: tempo di anticipo dell'accensione della candela;
+          \item \textit{AFR}: rapporto di aria-combustibile (Air Fuel Ratio);
+          \item \textit{Intake}: temperatura in ingresso;
+          \item \textit{Exhaust}: temperatura allo scarico;
+          \item \textit{Knock}: battito in testa del motore.
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Gli ingegneri vorrebbero ridurre l'effetto del battito in testa dei motori. Per farlo devono prima identificare quali variabili influenzino questo fenomeno. I dati sono stati raccolti casualmente da 13 motori.
+        \begin{itemize}
+          \item[-] Si rappresentino graficamente le relazioni tra \textit{Knock} e i predittori e si calcoli la correlazione.
+          \item[-] Si calcoli una regressione lineare multipla tra \textit{Knock} e i predittori.
+          \item[-] \`E possibile migliorare il modello risultante? Come?
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Matrice di scatterplot delle relazioni tra misure con correlazioni e significativit\`a: \\
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_splmatKnock}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.75cm}
+  \begin{itemize}
+    \item Il grafico mostra ogni possibile combinazione tra le variabili. L'ultima riga mostra gli scatterplot di \textit{Knock} e ciascuno dei predittori.
+    \vspace{0.5cm}
+    \item \textit{Knock} e \textit{Spark} sembrano sono correlati negativamente; \textit{Knock} \`e correlata positivamente con ciascuno degli altri predittori.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione multipla:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value    
+(Intercept) 23.814922   8.136731   2.927  0.01909  
+Spark       -0.296490   0.307181  -0.965  0.36271    
+AFR          3.191814   0.239804  13.310  9.7e-07
+Intake       0.358704   0.078482   4.571  0.00182
+Exhaust      0.013376   0.005421   2.467  0.03886
+
+Residual standard error: 0.5106 on 8 degrees of freedom
+Multiple R-squared: 0.9879,	Adjusted R-squared: 0.9818 
+F-statistic: 163.3 on 4 and 8 DF,  p-value: 1.062e-07
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.3214, p-value = 0.4873
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \begin{small}
+    \begin{itemize}
+      \item L'equazione del modello di regressione stimato \`e: $ Knock = 23.8 - 0.296 \cdot Spark + 3.19 \cdot AFR + 0.359 \cdot Intake + 0.0134 \cdot Exhaust $
+      \item Il p-value per ogni variabile indica se esssa risulta significativa nel presente modello. Ad esempio la variabile \textit{Spark} risulta non essere significativa, ma se dal modello viene esclusa la variabile \textit{Exhaust} allora \textit{Spark} diventa significativa. Ci\`o \`e dovuto all'elevata correlazione tra le due variabili.
+      \item Complessivamente il modello spiega il 98.79\% della variabilit\`a nella risposta; anche il valore dell'$ R^2 $ aggiustato (98.18\%) \`e molto elevato.
+      \item Un passo ulteriore pu\`o consistere nello stimare un nuovo modello di regressione, senza considerare la variabile \textit{Spark} che non risulta significativa.
+      \item Qualora pi\`u di una variabile non risulti significativa, \`e importante eliminarne una alla volta.
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione multipla:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value    
+(Intercept) 16.487725   2.917508   5.651 0.000313
+AFR          3.214814   0.237709  13.524 2.76e-07
+Intake       0.386365   0.072784   5.308 0.000488
+Exhaust      0.016576   0.004273   3.879 0.003737
+
+Residual standard error: 0.5086 on 9 degrees of freedom
+Multiple R-squared: 0.9865,	Adjusted R-squared: 0.982 
+F-statistic: 219.1 on 3 and 9 DF,  p-value: 9.962e-09 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.1965, p-value = 0.8599
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \begin{small}
+    \begin{itemize}
+      \item L'equazione del modello di regressione stimato \`e: $ Knock = 16.5 + 3.21 \cdot AFR + 0.386 \cdot Intake + 0.0166 \cdot Exhaust $
+      \item L'$R^2$ del modello \`e ovviamente pi\`u basso di quello del modello con quattro predittori, ed \`e del 98.65\%.
+      \item L'$R^2$ aggiustato, invece, \`e migliorato, ed \`e uguale al 98.20\%.
+      \item Poich\'e anche i grafici dei residui (slide successiva) mostrano che tutte le assunzioni circa gli errori sono state soddisfatte, \`e possibile ritenere questo modello un buon modello per spiegare il battito in testa del motore.
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione multipla:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residPolKnock}
+    \end{center}
+\end{frame}
+
+\livelloB{Mortalit\`a nelle maggiori citt\`a americane}
+
+\begin{frame}
+  \begin{description}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole determinare quali variabili siano collegate alla percentuale di mortalit\`a. I dati sono stati adattati da StatLib Website.
+        \begin{itemize}
+          \item[-] Si costruisca il modello completo, con tutti i regressori.
+          \item[-] Si arrivi ad un modello in cui tutti i regressori abbiano dei termini significativi al 5\%, eliminando un regressore alla volta.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]mortality.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Rain}: precipitazioni annuali medie;
+          \item \textit{JanTemp}: temperature medie di Gennaio;
+          \item \textit{JulyTemp}: temperature medie di Luglio;
+          \item \textit{PctOver65}: percentuale della popolazione oltre i 65 anni;
+          \item \textit{HHSize}: dimensione media delle abitazioni;
+          \item \textit{Education}: anni di istruzione;
+          \item \textit{PctHomesLiveable}: percentuale di case ``abitabili'';
+          \item \textit{PopDensity}: densit\`a della popolazione;
+          \item \textit{PctLowIncome}: percentuale di famiglie a basso reddito;
+          \item \textit{PctWhiteCollar}: percentuale impiegati;
+          \item \textit{Hydrocarbon}: livello di inquinamento per idrocarburi;
+          \item \textit{NititeOxide}: livello di inquinamento di ossido di nitrito;
+          \item \textit{SulphurDioxide}: livello di inquinamento di diossido di solfuro;
+          \item \textit{RelHum}: media annuale relativa all'umidit\`a a 1 PM;
+          \item \textit{MortalityRate}: tasso di mortalit\`a per 100'000 persone.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+  Modello di regressione completo:
+  \begin{tiny}
+    \begin{verbatim}
+Coefficients:
+                   Estimate Std. Error t value  p value    
+(Intercept)       1.760e+03  4.270e+02   4.122 0.000159
+Rain              1.916e+00  8.890e-01   2.156 0.036483
+JanTemp          -1.976e+00  8.172e-01  -2.418 0.019714
+JulyTemp         -3.115e+00  1.860e+00  -1.674 0.101021    
+PctOver65        -9.218e+00  7.868e+00  -1.172 0.247501    
+HHSize           -1.072e+02  6.862e+01  -1.562 0.125213    
+Education        -1.714e+01  1.172e+01  -1.462 0.150678    
+PctHomesLiveable -5.965e-01  1.404e+00  -0.425 0.673079    
+PopDensity        3.625e-03  3.955e-03   0.917 0.364262    
+PctLowIncome      4.424e+00  1.126e+00   3.930 0.000290
+PctWhiteCollar   -1.704e-01  1.613e+00  -0.106 0.916322    
+Hydrocarbon      -6.702e-01  4.841e-01  -1.385 0.173024    
+NititeOxide       1.338e+00  9.935e-01   1.347 0.184813    
+SulphurDioxide    8.686e-02  1.454e-01   0.597 0.553222    
+RelHum            1.174e-01  1.139e+00   0.103 0.918323    
+
+Residual standard error: 34.54 on 45 degrees of freedom
+Multiple R-squared: 0.7649,	Adjusted R-squared: 0.6917 
+F-statistic: 10.46 on 14 and 45 DF,  p-value: 6.576e-10 
+    \end{verbatim}
+  \end{tiny}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.2774, p-value = 0.641
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.75cm}
+  \begin{itemize}
+    \item Il modello completo contiene molti coefficienti non significativi (ad un livello del 5\%).
+    \vspace{0.75cm}
+    \item Eliminando uno alla volta, partendo da quello con il p-value pi\`u alto, i termini del modello non significativi, si arriva al modello presentato nella prossima slide.
+    \vspace{0.75cm}
+    \item Utilizzando altri criteri per determinare le variabili significative, il modello risultante potrebbe essere diverso.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  Modello di regressione ridotto:
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value
+(Intercept)  1145.1944    70.2397  16.304  < 2e-16
+JanTemp        -1.5629     0.5937  -2.633  0.01103
+Education     -19.3693     6.1794  -3.135  0.00278
+PctLowIncome    4.4613     0.6531   6.831 7.75e-09
+Hydrocarbon    -0.9844     0.3308  -2.976  0.00436
+NititeOxide     1.9924     0.6341   3.142  0.00272
+
+Residual standard error: 35.78 on 54 degrees of freedom
+Multiple R-squared: 0.6972,	Adjusted R-squared: 0.6691 
+F-statistic: 24.87 on 5 and 54 DF,  p-value: 6.603e-13 
+    \end{verbatim}
+  \end{small}
+  \begin{small}
+    Test di Anderson-Darling: \verb+A = 0.2651, p-value = 0.6824+
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione multipla:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residPolMortalityRate}
+  \end{center}
+\end{frame}
+
+\livelloB{Durata del sonno}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]sleep.txt \\
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Species}: indica la specie animale (stringa);
+          \item \textit{BodyWght}: peso (kg);
+          \item \textit{MaxLife}: durata della vita (anni);
+          \item \textit{Gestation}: periodo di gestazione (giorni);
+          \item \textit{Predation}: indice di probabilit\`a per l'animale di essere predato (da 1, probabilit\`a pi\`u bassa, a 5);
+          \item \textit{Exposure}: indice del livello di esposizione durante il sonno (da 1, animale che dorme in un luogo protetto, a 5);
+          \item \textit{Sleep}: ore giornaliere di sonno.
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole determinare quali variabili siano in relazione alla durata del sonno nelle 51 specie di animali prese in esame.
+        \begin{itemize}
+          \item[-] Si costruisca il modello completo, con tutti i regressori.
+          \item[-] Si arrivi ad un modello in cui tutti i regressori abbiano dei termini significativi al 5\%, eliminando un regressore alla volta.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+  Modello di regressione completo:
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value    
+(Intercept) 16.9311593  1.1681738  14.494   <2e-16
+BodyWght     0.0007099  0.0006693   1.061   0.2945    
+MaxLife     -0.0181089  0.0342994  -0.528   0.6001    
+Gestation   -0.0174520  0.0066645  -2.619   0.0120
+Predation   -0.9063605  0.4593231  -1.973   0.0546
+Exposure    -0.5386782  0.5294925  -1.017   0.3144 
+
+Residual standard error: 3.234 on 45 degrees of freedom
+Multiple R-squared: 0.5701,	Adjusted R-squared: 0.5223 
+F-statistic: 11.94 on 5 and 45 DF,  p-value: 2.213e-07 
+    \end{verbatim}
+  \end{small}
+  \vspace{-0.2cm}
+  Test di Anderson-Darling: \verb+A = 0.5624, p-value = 0.1385+
+\end{frame}
+
+\begin{frame}
+  \vspace{0.75cm}
+  \begin{itemize}
+    \item Il modello completo contiene molti coefficienti non significativi (ad un livello del 5\%).
+    \vspace{0.75cm}
+    \item Eliminando uno alla volta, partendo da quello con il p-value pi\`u alto, i termini del modello non significativi, si arriva al modello presentato nella prossima slide.
+    \vspace{0.75cm}
+    \item Utilizzando altri criteri per determinare le variabili significative, il modello risultante potrebbe essere diverso.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  Modello di regressione ridotto:
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value   
+(Intercept) 16.426357   1.045378  15.713  < 2e-16
+Gestation   -0.018909   0.003259  -5.801 5.04e-07
+Predation   -1.192701   0.311999  -3.823  0.00038
+
+Residual standard error: 3.251 on 48 degrees of freedom
+Multiple R-squared: 0.5367,	Adjusted R-squared: 0.5174 
+F-statistic: 27.81 on 2 and 48 DF,  p-value: 9.54e-09 
+
+    \end{verbatim}
+  \end{small}
+  \begin{small}
+    Test di Anderson-Darling: \verb+A = 0.5876, p-value = 0.1192+
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione multipla:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_residPolSleep}
+  \end{center}
+\end{frame}
+
+
+
+\livelloA{Regressione con variabili dummy}
+
+\livelloB{Differenze di peso tra sessi}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]istat.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Gender}: sesso (fattore);
+          \item \textit{Area}: area geografica (fattore);
+          \item \textit{Weight}: peso (in kg);
+          \item \textit{Height}: altezza (in cm).
+        \end{itemize}
+      \end{footnotesize}
+      \begin{tiny}
+        I dati sono tratti da un'indagine ISTAT del 2005 e sono relativi ai trentenni italiani.
+      \end{tiny}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Studiare le differenze di peso tra i due sessi.
+        \begin{itemize}
+          \item[-] Utilizzare il test t per campioni indipendenti per verificare se esistono differenze di peso tra maschi e femmine.
+          \item[-] Utilizzare, per la stessa verifica, un modello di regressione lineare.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+  \vspace{0.5cm}
+  Il test t per due campioni indipendenti produce il seguente risultato:
+  \begin{small}
+    \begin{verbatim}
+t = -33.5243, df = 1804, p-value < 2.2e-16
+alternative hypothesis: true difference in means
+  is not equal to 0 
+95 percent confidence interval:
+ -17.26791 -15.35912 
+    \end{verbatim}
+  \end{small}
+Da ricordare, il perch\'e sar\`a evidente nella prossima slide, che il ``centro'' dell'intervallo di confidenza al 95\% per la vera differenza tra le medie (stima puntuale) \`e -16.31352. 
+\end{frame}
+
+\begin{frame}[fragile]
+  Un metodo analogo per condurre lo stesso confronto, consiste nell'utilizzare il modello di regressione lineare, con un'unica variabile dummy come regressore, oltre all'intercetta.
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+            Estimate Std. Error t value  p value   
+(Intercept)  76.0668     0.3450  220.46   <2e-16
+zFemale     -16.3135     0.4866  -33.52   <2e-16 
+
+Residual standard error: 10.34 on 1804 degrees of freedom
+Multiple R-squared: 0.3839,	Adjusted R-squared: 0.3835 
+F-statistic:  1124 on 1 and 1804 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 22.713, p-value < 2.2e-16
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.75cm}
+  Da notare che:
+  \begin{itemize}
+    \vspace{0.5cm}
+    \item il coefficiente associato alla variabile dummy ha lo stesso valore della stima puntuale della differenza tra le medie dei due gruppi;
+    \vspace{0.5cm}
+    \item il relativo valore dell'indice $ t $ \`e lo stesso dell'indice $ t $ del test precedente.
+  \end{itemize}
+\end{frame}
+
+\livelloB{Differenze tra sessi nella relazione tra peso e altezza}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]istat.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Gender}: sesso (fattore);
+          \item \textit{Area}: area geografica (fattore);
+          \item \textit{Weight}: peso (in kg);
+          \item \textit{Height}: altezza (in cm).
+        \end{itemize}
+      \end{footnotesize}
+      \begin{tiny}
+        I dati sono tratti da un'indagine ISTAT del 2005 e sono relativi ai trentenni italiani.
+      \end{tiny}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole studiare se nella relazione tra peso e altezza esistono differenze dovute al sesso.
+       \begin{itemize}
+          \item[-] Si rappresenti graficamente la relazione tra peso e altezza, evidenziando il diverso sesso.
+          \item[-] Si calcoli una regressione lineare che tenga conto delle differenze di intercetta tra maschi e femmine nella relazione tra peso e altezza.
+          \item[-] Si calcoli una regressione lineare che tenga conto delle differenze nel coefficiente angolare di maschi e femmine nella relazione tra peso e altezza.
+          \item[-] Si calcoli una regressione lineare che tenga conto delle differenze sia d'intercetta che di coefficiente angolare di maschi e femmine nella relazione tra peso e altezza.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummy1}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione con variabili dummy\\ (differenze di intercetta) :\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value   
+(Intercept) -39.23019    5.99508  -6.544  7.8e-11
+x             0.65415    0.03397  19.258  < 2e-16
+zFemale      -8.71260    0.59353 -14.679  < 2e-16
+
+Residual standard error: 9.419 on 1803 degrees of freedom
+Multiple R-squared: 0.489,	Adjusted R-squared: 0.4884 
+F-statistic: 862.6 on 2 and 1803 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 27.0344, p-value < 2.2e-1
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  \begin{itemize}
+    \item L'equazione del modello di regressione stimato \`e: $ Weight = -39.23 + 0.654 \cdot Height - 8.713 \cdot Female $
+    \item Se il soggetto \`e di sesso maschile, allora \textit{Female} \`e uguale a 0 e quindi l'equazione del modello \`e: $ Weight = -39.23 + 0.654 \cdot Height $; se il soggetto \`e di sesso femminile allora l'equazione diventa $ Weight = -47.94 + 0.654 \cdot Height $
+    \item Il coefficiente della variabile dummy associata alla differenza d'intercetta tra i sessi \`e significativo.
+    \item L'$R^2$ del modello \`e del 48.90\%.
+    \item Il grafico della slide che segue mostra le due rette di regressione stimate.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummy2}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione con variabili dummy\\ (differenze di pendenza):\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value   
+(Intercept) -42.333280   5.792810  -7.308 4.06e-13
+x             0.671981   0.032864  20.447  < 2e-16
+x:zFemale    -0.052143   0.003483 -14.970  < 2e-16
+
+Residual standard error: 9.399 on 1803 degrees of freedom
+Multiple R-squared: 0.4911,	Adjusted R-squared: 0.4906 
+F-statistic: 870.1 on 2 and 1803 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 27.3062, p-value < 2.2e-16
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \begin{small}
+    \begin{itemize}
+      \item L'equazione del modello di regressione stimato \`e: $ Weight = -42.33 + 0.672 \cdot Height - 0.052 \cdot Height \cdot Female $
+      \item Se il soggetto \`e di sesso maschile, allora \textit{Female} \`e uguale a 0 e quindi l'equazione del modello \`e: $ Weight = -42.33 + 0.672 \cdot Height $; se il soggetto \`e di sesso femminile allora l'equazione diventa $ Weight = -42.33 + 0.667 \cdot Height $
+      \item Il coefficiente della variabile dummy associata alla differenza di coefficiente angolare tra i sessi \`e significativo.
+      \item L'$R^2$ del modello \`e del 49.11\%.
+      \item I grafici delle slide che segue mostrano le due rette di regressione stimate. Il primo grafico mostra il grafico a partire dall'origine degli assi, perch\'e risulti evidente che le due rette hanno la stessa intercetta, il secondo mostra solo la parte di piano contenente i punti ed evidenziata da un riquadro nero nel primo grafico.
+    \end{itemize}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummyCA1}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummyCA2}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione con variabili dummy\\ (differenze sia di intercetta che di coefficiente angolare):\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value    
+(Intercept) -68.44263    7.98282  -8.574  < 2e-16
+x             0.81989    0.04526  18.116  < 2e-16
+zFemale      54.44344   11.52739   4.723 2.50e-06
+x:zFemale    -0.37191    0.06779  -5.486 4.70e-08
+
+Residual standard error: 9.344 on 1802 degrees of freedom
+Multiple R-squared: 0.4974,	Adjusted R-squared: 0.4965 
+F-statistic: 594.4 on 3 and 1802 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \end{small}  
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 26.6082, p-value < 2.2e-16
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  \begin{itemize}
+    \item L'equazione del modello di regressione stimato \`e: $ Weight = -68.44 + 0.820 \cdot Height - 54.44 \cdot Female - 0.372 \cdot Height \cdot Female $
+    \vspace{0.15cm}
+    \item Se il soggetto \`e di sesso maschile, allora \textit{Female} \`e uguale a 0 e quindi l'equazione del modello \`e: $ Weight = -68.44 + 0.820 \cdot Height $; se il soggetto \`e di sesso femminile allora l'equazione diventa $ Weight = -14.00 + 0.44798 \cdot Height $
+    \vspace{0.15cm}
+    \item I coefficienti sono tutti significativi.
+    \vspace{0.15cm}
+    \item L'$R^2$ del modello \`e del 49.74\%.
+    \vspace{0.15cm}
+    \item Il grafico della slide che segue mostra le due rette di regressione stimate.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummyAll1}
+  \end{center}
+\end{frame}
+
+
+\livelloB{Differenze tra aree geografiche nella relazione tra peso e altezza}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]istat.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Gender}: sesso (fattore);
+          \item \textit{Area}: area geografica (fattore);
+          \item \textit{Weight}: peso (in kg);
+          \item \textit{Height}: altezza (in cm).
+        \end{itemize}
+      \end{footnotesize}
+      \begin{tiny}
+        I dati sono tratti da un'indagine ISTAT del 2005 e sono relativi ai trentenni italiani.
+      \end{tiny}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole studiare se nella relazione tra peso e altezza esistono differenze dovute all'area geografica di residenza (Nord, Centro, Sud e Isole).
+       \begin{itemize}
+          \item[-] Si rappresenti graficamente la relazione tra peso e altezza, evidenziando le diverse aree geografiche.
+          \item[-] Si calcoli una regressione lineare che tenga conto delle differenze di intercetta tra le diverse aree geografiche nella relazione tra peso e altezza.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummy3}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione con variabili dummy\\ (differenze di intercetta):\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value  p value    
+(Intercept) -104.37815    4.60721 -22.655  < 2e-16
+x              1.00532    0.02679  37.521  < 2e-16
+zIsole         2.70906    0.84250   3.216  0.00133 
+zNord         -0.25560    0.61924  -0.413  0.67983    
+zSud           2.74037    0.68021   4.029 5.84e-05
+
+Residual standard error: 9.873 on 1801 degrees of freedom
+Multiple R-squared: 0.4392,	Adjusted R-squared: 0.4379 
+F-statistic: 352.6 on 4 and 1801 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \vspace{-0.5cm}
+  Test di Anderson-Darling: \verb+A = 14.1561, p-value < 2.2e-16+
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  \begin{itemize}
+    \item L'area geografica ``Centro'' \`e la baseline, ovvero il riferimento. I coefficienti relativi alle altre aree geografiche indicano lo scostamento dell'intercetta da quello della regione Centro.
+    \vspace{0.25cm}
+    \item Per $ \alpha = 0.05 $ risultano significativi i coefficienti associati al Sud ed alle Isole. 
+    \vspace{0.25cm}
+    \item L'$R^2$ del modello \`e del 43.92\%.
+    \vspace{0.25cm}
+    \item Il grafico della slide che segue mostra le rette di regressione stimate. Si pu\`o notare come quelle relative al Nord ed al Centro siano molto vicine tra loro; allo stesso modo quelle relative al Sud ed alle Isole.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_regrDummy4}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione con variabili dummy\\ (differenze sia di intercetta che di coefficiente angolare):\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.032e+02  9.950e+00 -10.370   <2e-16
+zIsole      -1.651e+01  1.662e+01  -0.994    0.321    
+zNord       -1.410e+00  1.212e+01  -0.116    0.907    
+zSud         9.432e+00  1.373e+01   0.687    0.492    
+x            9.983e-01  5.813e-02  17.172   <2e-16
+zIsole:x     1.138e-01  9.788e-02   1.162    0.245    
+zNord:x      6.753e-03  7.075e-02   0.095    0.924    
+zSud:x      -3.963e-02  8.063e-02  -0.492    0.623
+
+Residual standard error: 9.874 on 1798 degrees of freedom
+Multiple R-squared:  0.44,	Adjusted R-squared: 0.4378 
+F-statistic: 201.8 on 7 and 1798 DF,  p-value: < 2.2e-16 
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  \begin{itemize}
+    \item La slide precedente mostra l'analisi di regressione con differenze sia di intercetta che di coefficiente angolare.
+    \vspace{0.25cm}
+    \item Per $ \alpha = 0.05 $ non risulta essere significativo nessun coefficiente delle variabili dummy.
+    \vspace{0.25cm}
+    \item Non \`e corretto eliminare tutti i termini non significativi: bisogna sempre eliminarne uno alla volta.
+    \vspace{0.25cm}
+    \item Al termine di una procedura backwise il modello risultante \`e lo stesso visto in precedenza, con differenze solo di intercetta.
+  \end{itemize}
+\end{frame}
+
+
+
+\livelloA{Modelli linearizzabili}
+
+\livelloB{Peso del corpo e peso del cervello}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]brainbod.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Species}: specie dell'animale (stringa);
+          \item \textit{Body}: peso dell'animale (in kg);
+          \item \textit{Brain}: peso del cervello dell'animale (in g).
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole stabilire se esiste una relazione tra il peso del corpo e il peso del cervello di quindici mammiferi (elefante africano, mucca, scimmia, uomo, lupo grigio, volpe rossa, armadillo, cincill\`a ecc.).
+        \begin{itemize}
+          \item[-] Si mostrino i grafici descrittivi (istogrammi e BW plot) univariati delle due variabili.
+          \item[-] Si mostri il diagramma di dispersione delle due variabile e si stimi un modello di regressione lineare.       
+          \item[-] Il modello lineare tra le due variabili \`e adeguato? Perch\`e? Come pu\`o essere migliorato?
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Grafici descrittivi:\\
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_modLin1}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  Diagramma di dispersione:\\
+  \vspace{-0.8cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_modLin2}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+             Estimate Std. Error t value  p value    
+(Intercept) 124.52517   90.60557   1.374    0.193    
+x             0.84086    0.05259  15.990 6.26e-10
+
+Residual standard error: 336.1 on 13 degrees of freedom
+Multiple R-squared: 0.9516,	Adjusted R-squared: 0.9479 
+F-statistic: 255.7 on 1 and 13 DF,  p-value: 6.257e-10 
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 3.5975, p-value = 1.677e-09
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_resid1SetPoint}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  \begin{itemize}
+    \item Tra le due variabili sembra esistere una relazione lineare.
+    \vspace{0.35cm}
+    \item Il valore elevato dell'$ R^2 $ (95.16\%) indica che il legame tra peso del corpo e peso del cervello \`e ben spiegato da una relazione lineare.
+    \vspace{0.35cm}
+    \item Tuttavia, il peso dell'elefante africano, molto pi\`u alto rispetto a quello degli altri animali, rende il grafico e la curva di regressione poco leggibili.
+    \vspace{0.35cm}
+    \item Una trasformazione logaritmica delle due variabili potrebbe suggerire una lettura pi\`u chiara del grafico e rendere pi\`u evidente la relazione tra le due variabili.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Grafici descrittivi:\\
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_modLin3}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  Diagramma di dispersione:\\
+  \vspace{-0.8cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_modLin4}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  Analisi di regressione:\\
+  \begin{small}
+    \begin{verbatim}
+Coefficients:
+            Estimate Std. Error t value  p value    
+(Intercept)  2.04818    0.19261   10.63 8.78e-08
+log(x)       0.78218    0.05123   15.27 1.11e-09
+
+Residual standard error: 0.6891 on 13 degrees of freedom
+Multiple R-squared: 0.9472,	Adjusted R-squared: 0.9431 
+F-statistic: 233.1 on 1 and 13 DF,  p-value: 1.110e-09  
+    \end{verbatim}
+  \end{small}
+  Test di Anderson-Darling:\\
+  \begin{small}
+    \begin{verbatim}
+A = 0.7164, p-value = 0.04826
+    \end{verbatim}
+  \end{small}
+\end{frame}
+
+\begin{frame}
+  Verifica grafica del modello di regressione:\\
+  \vspace{.1cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_resid2SetPoint}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.75cm}
+  \begin{itemize}
+    \item Il diagramma di dispersione dei logaritmi dei pesi risulta pi\`u chiaramente leggibile rispetto al grafico ottenuto sui valori originari.
+    \vspace{0.5cm}
+    \item Inoltre, il test di Anderson-Darling rifiuta, per qualsiasi valore di $\alpha$ tra quelli comunemente utilizzati l'ipotesi di normalit\`a dei residui, che sembra invece poterci essere nel modello che considera le trasformate logaritmiche.
+  \end{itemize}
+\end{frame}
+
+
+
+\livelloA{Previsione}
+
+\livelloB{Impurit\`a nelle vernici}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]paint.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Stirrate}: tasso di agitazione (rotazione) applicato al recipiente stesso (rpm, revolutions per minute);
+          \item \textit{Impurity}: numero di impurit\`a (grumi) presenti nei recipienti di vernice.
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Il numero di impurit\`a (grumi) presenti nei recipienti di vernice dipende dal tasso di agitazione applicato al recipiente stesso. In precedenza si era determinata la relazione lineare che lega il tasso di rotazione applicato al recipiente con il numero di grumi. Si vuole utilizzare tale relazione per prevedere, a partire dal tasso di agitazione applicato, il numero di grumi presenti nel recipiente di vernice.
+        \begin{itemize}
+          \item[-]  Si stimi un valore di \textit{Impurity} se \textit{Stirrate} \`e uguale a 30.
+          \item[-]  Si stimino gli intervalli di confidenza e di previsione al livello 95 \% per il modello di regressione lineare.
+          \item[-]  Si stimi un intervallo di previsione di \textit{Impurity} al livello 95\% se \textit{Stirrate} \`e uguale a 30.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  Scatterplot della relazione con retta di regressione:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrPred30StirrateImpurity.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  Retta di regressione con intervalli di confidenza e di previsione al 95\%:\\
+  \vspace{.3cm}
+  \begin{center}
+    \includegraphics[width=7.5cm]{99_06_regrInt30StirrateImpurity.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \vspace{.25cm}
+  \begin{small}
+  \begin{itemize}
+     \item Un possibile utilizzo del modello di regressione lineare per fare previsioni su valori di \textit{Stirrate} non presenti nel campione.
+     \item Si supponga ad esempio di voler stimare il numero di impurit\`a presenti nei recipienti di vernice quando il tasso di rotazione \`e pari a 30 rpm.
+     \item Il primo grafico mostra come una stima (puntuale) del numero di impurit\`a sia 13.41, che significa che che ci si possono aspettare circa 13 impurit\`a.
+     \item \`E necessario per\`o tenere in considerazione la variabilit\`a delle stime del nostro modello, quindi si utilizza l'intervallo di previsione costruito a partire dalla retta di regressione.
+     \item Per \textit{Stirrate} uguale a 30, l'intervallo di previsione di livello 95\% \`e 11.28 - 15.54 il che significa che il numero di grumi quando il tasso di agitazione \`e pari a 30 rpm pu\`o variare da 11 a 16. 
+  \end{itemize}
+  \end{small}
+\end{frame}
+
+
+
+\livelloA{Analisi della covarianza}
+
+\livelloB{Effetto della suscettibilit\`a all'ipnosi}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]suggestibility.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Induction}: punteggio di induzione all'ipnosi (da 1 a 50);
+          \item \textit{Suggestibility}: punteggio di suscettibilit\`a (da 1 a 50);
+          \item \textit{Method}: tipo di farmaco (fattore).
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole stabilire se due farmaci ipnotici, A e B, abbiano la stessa efficacia nell'indurre lo stato ipnotico nei pazienti. L'efficacia dell'induzione ipnotica \`e per\`o soggettiva perch\'e dipende dalla suscettibilit\`a individuale del paziente. Quindi, prima della somministrazione del farmaco, i soggetti sono sottoposti ad un test di suscettibilit\`a all'ipnosi.
+        \begin{itemize}
+          \item[-] Si mostri come, almeno graficamente, le differenze tra i due farmaci, A e B, siano molto pi\`u evidenti una volta rimossa la componente dovuta alla suscettibilit\`a dei pazienti.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  La slide che segue mostra tre grafici che evidenziano come:
+  \begin{itemize}
+    \vspace{0.25cm}
+    \item l'induzione all'ipnosi, senza tener conto della suscettibilit\`a individuale dei pazienti, risulta essere simile tra i soggetti trattati con il farmaco A e quelli trattati con il farmaco B, come mostra il grafico di sinistra;
+    \vspace{0.25cm}
+    \item la suscettibilit\`a e l'induzione all'ipnosi si differenziano nei due gruppi, come evidenziato dal grafico centrale;
+    \vspace{0.25cm}
+    \item in effetti, una volta rimossa la componente dovuta alla suscettibilit\`a, l'induzione all'ipnosi dei soggetti trattati con il farmaco A \`e maggiore di quella dei soggetti trattati con il farmaco B, come mostrato dal grafico di destra.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_ancova1}
+  \end{center}
+\end{frame}
+
+\livelloB{Effetto dell'altezza sull'obesit\`a}
+
+\begin{frame}
+  \begin{description}
+    \item[Dati: ]weight.txt \\ 
+    \item[Descrizione: ]
+      \begin{footnotesize}
+        \begin{itemize}
+          \item \textit{Region}: regione di residenza (fattore);
+          \item \textit{Weight}: peso (in kg);
+          \item \textit{Height}: altezza (in cm).
+        \end{itemize}
+      \end{footnotesize}
+    \item[Obiettivi: ]
+      \begin{footnotesize}
+        Si vuole stabilire se gli abitanti di due regioni italiane vicine tra loro, la Lombardia ed il Veneto, abbiano ``obesit\`a'' diverse.
+        Si utilizza il peso come indice di obesit\`a.
+        \begin{itemize}
+          \item[-] Si mostri come, almeno graficamente, le differenze tra le ``obesit\`a'' tra gli abitanti di Lombardia e Veneto siano dovute alle diverse altezze dei soggetti di ciascuno dei due gruppi.
+        \end{itemize}
+      \end{footnotesize}
+  \end{description}
+\end{frame}
+
+\begin{frame}
+  \vspace{0.5cm}
+  La slide che segue mostra tre grafici che evidenziano come:
+  \begin{itemize}
+    \vspace{0.25cm}
+    \item l'obesit\`a, senza tener conto dell'altezza, risulta essere pi\`u bassa per gli abitanti del Veneto, come mostra il grafico di sinistra;
+    \vspace{0.25cm}
+    \item il peso e l'altezza si differenziano nelle due regioni, come evidenziato dal grafico centrale;
+    \vspace{0.25cm}
+    \item in effetti, una volta rimossa la componente dovuta alle differenze di altezza, il grado di obesit\`a degli abitanti del Veneto non sembra essere diverso da quello degli abitanti della Lombardia.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \vspace{-0.3cm}
+  \begin{center}
+    \includegraphics[scale=0.45]{99_06_ancova2}
+  \end{center}
+\end{frame}
+
+
+
